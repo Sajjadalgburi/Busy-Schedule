@@ -14,19 +14,13 @@ $(document).ready(function () {
   // function? How can DOM traversal be used to get the "hour-x" id of the
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
-  //
   // Add click event handler to all elements with class 'saveBtn'
 
-  function saveThis() {
+  function changeBtnColorOnClick() {
     var changeColorOfBtn = $(this).css("background", "orange");
-
-    $(".saveBtn").on("click", function () {
-      // Traverse up the DOM to find the closest ancestor with class 'time-block'
-      var timeBlock = $(this).closest(".time-block");
-    });
   }
 
-  saveBtnEl.click(saveThis);
+  saveBtnEl.click(changeBtnColorOnClick);
 
   function checkHour() {
     // Iterate over all div blocks with class 'time-block'
