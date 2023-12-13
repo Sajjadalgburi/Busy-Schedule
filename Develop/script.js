@@ -1,7 +1,3 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
-
 $(document).ready(function () {
   var TimeDisplayEl = $("#currentDay");
   var descriptionEl = $(".description");
@@ -14,9 +10,39 @@ $(document).ready(function () {
   // function? How can DOM traversal be used to get the "hour-x" id of the
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
-  // Add click event handler to all elements with class 'saveBtn'
 
-  function changeBtnColorOnClick() {
+  $(".saveBtn").on("click", function (event) {
+    event.preventDefault(); // Prevent the default button behavior
+
+    var timeBlockId = $(this).closest(".time-block").attr("id"); // Grab the id from the closest class with name "time-block"
+    console.log("Clicked button in time block with ID: " + timeBlockId);
+
+    var descriptionVal = $(this)
+      .closest(".time-block")
+      .find(".description")
+      .val(); // Grab the value from the closest class with name description
+
+    if (descriptionVal === "" || descriptionVal.length === 0) {
+      console.log("description is null at " + timeBlockId);
+    } else {
+      console.log(descriptionVal + "at " + timeBlockId);
+      // save the input of user into local storage
+    }
+  });
+
+  // Add click event handler to all elements with class 'saveBtn'
+  // saveBtnEl.on("click", function (event) {
+  //   event.preventDefault();
+
+  //   $(".time-block").each(function () {
+  //     let timeBlockId = $(this).attr("id");
+  //     alert("btn clicked!! " + timeBlockId);
+  //   });
+  // });
+
+  function changeBtnColorOnClick(event) {
+    event.preventDefault();
+
     var changeColorOfBtn = $(this).css("background", "orange");
   }
 
@@ -43,9 +69,20 @@ $(document).ready(function () {
     });
   }
 
+  //
+  //
+  //
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
+
+  //
+  //
+  //
+  //
+  //
+  //
+  //
 
   function displayTime() {
     var rightNow = dayjs().format("MMM DD, YYYY [at] hh:mm:ss a");
