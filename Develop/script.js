@@ -17,37 +17,21 @@ $(document).ready(function () {
   //
   // Add click event handler to all elements with class 'saveBtn'
 
-  $(".saveBtn").on("click", function () {
-    // Traverse up the DOM to find the closest ancestor with class 'time-block'
-    var timeBlock = $(this).closest(".time-block");
-    var description = $(".description").val();
-    console.log(description);
-
-    if (timeBlock.length) {
-      // Get the id attribute of the time block
-      var timeBlockId = timeBlock.attr("id");
-      console.log(timeBlockId);
-    }
-  });
-
   function saveThis() {
     var changeColorOfBtn = $(this).css("background", "orange");
-    localStorage.setItem("color", JSON.stringify(changeColorOfBtn));
+
+    $(".saveBtn").on("click", function () {
+      // Traverse up the DOM to find the closest ancestor with class 'time-block'
+      var timeBlock = $(this).closest(".time-block");
+    });
   }
 
   saveBtnEl.click(saveThis);
 
-  // TODO: Add code to apply the past, present, or future class to each time
-  // block by comparing the id to the current hour. HINTS: How can the id
-  // attribute of each time-block be used to conditionally add or remove the
-  // past, present, and future classes? How can Day.js be used to get the
-  // current hour in 24-hour time?
-  //
   function checkHour() {
     // Iterate over all div blocks with class 'time-block'
     $(".time-block").each(function () {
-      const currentHour = dayjs().hour(); // Use the fixed time
-      // const currentHour = dayjs().hour(); // 24-hour format
+      const currentHour = dayjs().hour(); // 24 hour format
 
       // Get the hour from the id attribute of the current time block
       var timeBlockHour = parseInt($(this).attr("id").split("-")[1]);
