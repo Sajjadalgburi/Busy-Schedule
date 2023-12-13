@@ -22,11 +22,12 @@ $(document).ready(function () {
       .find(".description")
       .val(); // Grab the value from the closest class with name description
 
-    if (descriptionVal === "" || descriptionVal.length === 0) {
-      console.log("description is null at " + timeBlockId);
+    if (descriptionVal.length > 1) {
+      console.log(descriptionVal + " at " + timeBlockId);
+      // save into local storage
     } else {
-      console.log(descriptionVal + "at " + timeBlockId);
-      // save the input of user into local storage
+      console.log("description is null at " + timeBlockId);
+      // DO NOT save into local storage
     }
   });
 
