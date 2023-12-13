@@ -11,35 +11,30 @@ $(document).ready(function () {
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
 
+  // Attach a click event handler to elements with the class "saveBtn"
   $(".saveBtn").on("click", function (event) {
-    event.preventDefault(); // Prevent the default button behavior
+    // Prevent the default behavior of the button (e.g., form submission)
+    event.preventDefault();
 
-    var timeBlockId = $(this).closest(".time-block").attr("id"); // Grab the id from the closest class with name "time-block"
+    // Get the ID of the closest ancestor element with the class "time-block"
+    var timeBlockId = $(this).closest(".time-block").attr("id");
     console.log("Clicked button in time block with ID: " + timeBlockId);
 
+    // Get the value of the input field with the class "description" within the same "time-block"
     var descriptionVal = $(this)
       .closest(".time-block")
       .find(".description")
-      .val(); // Grab the value from the closest class with name description
+      .val();
 
+    // Check if the description has a length greater than 1
     if (descriptionVal.length > 1) {
       console.log(descriptionVal + " at " + timeBlockId);
-      // save into local storage
+      // Save the description into local storage
     } else {
       console.log("description is null at " + timeBlockId);
-      // DO NOT save into local storage
+      // Do not save into local storage if the description is null or too short
     }
   });
-
-  // Add click event handler to all elements with class 'saveBtn'
-  // saveBtnEl.on("click", function (event) {
-  //   event.preventDefault();
-
-  //   $(".time-block").each(function () {
-  //     let timeBlockId = $(this).attr("id");
-  //     alert("btn clicked!! " + timeBlockId);
-  //   });
-  // });
 
   function changeBtnColorOnClick(event) {
     event.preventDefault();
