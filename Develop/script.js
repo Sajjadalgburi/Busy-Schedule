@@ -4,6 +4,8 @@ $(document).ready(function () {
   var saveBtnEl = $(".saveBtn");
   var timeBlockEl = $(".time-block");
 
+  var items = [];
+
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
@@ -30,14 +32,13 @@ $(document).ready(function () {
     if (descriptionVal.length > 1) {
       console.log(descriptionVal + " at " + timeBlockId);
       // Save the description into local storage
+      var timeObject = { timeBlockId, descriptionVal }; // created an object and oushed into array
+      items.push(timeObject); // array of objects
+      localStorage.setItem("hourly-calander", JSON.stringify(items)); // trun from object into string
     } else {
       console.log("description is null at " + timeBlockId);
       // Do not save into local storage if the description is null or too short
     }
-    localStorage.setItem(
-      timeBlockEl,
-      JSON.stringify({ value: descriptionVal })
-    );
   });
 
   function changeBtnColorOnClick(event) {
@@ -76,6 +77,14 @@ $(document).ready(function () {
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
 
+  function getItems() {
+    return localStorage.getItem("hourly-calander");
+  }
+
+  function displaySavedItems() {
+    var items = getItems();
+  }
+
   //
   //
   //
@@ -91,4 +100,5 @@ $(document).ready(function () {
 
   setInterval(displayTime, 1000);
   checkHour();
+  displaySavedItems();
 });
