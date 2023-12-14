@@ -1,12 +1,13 @@
 $(document).ready(function () {
-  var TimeDisplayEl = $("#currentDay");
-  var descriptionEl = $(".description");
-  var saveBtnEl = $(".saveBtn");
-  var timeBlockEl = $(".time-block");
+  // Selecting DOM elements
+  var TimeDisplayEl = $("#currentDay"); // Element displaying current time
+  var descriptionEl = $(".description"); // Text area for event description
+  var saveBtnEl = $(".saveBtn"); // Save buttons for each time block
+  var timeBlockEl = $(".time-block"); // Time block containers
 
-  var items = [];
+  var items = []; // Array to store time block objects with descriptions
 
-  // Attach a click event handler to elements with the class "saveBtn"
+  // Event handler for save buttons
   $(".saveBtn").on("click", function (event) {
     // Prevent the default behavior of the button (e.g., form submission)
     event.preventDefault();
@@ -25,29 +26,28 @@ $(document).ready(function () {
     if (descriptionVal.length > 1) {
       console.log(descriptionVal + " at " + timeBlockId);
       // Save the description into local storage
-      var timeObject = { timeBlockId, descriptionVal }; // created an object and oushed into array
-      items.push(timeObject); // array of objects
-      localStorage.setItem("hourly-calander", JSON.stringify(items)); // trun from object into string
+      var timeObject = { timeBlockId, descriptionVal };
+      items.push(timeObject);
+      localStorage.setItem("hourly-calander", JSON.stringify(items));
     } else {
       console.log("description is null at " + timeBlockId);
       // Do not save into local storage if the description is null or too short
     }
   });
 
+  // Event handler to change button color on click
   function changeBtnColorOnClick(event) {
     event.preventDefault();
-
     var changeColorOfBtn = $(this).css("background", "orange");
   }
 
   saveBtnEl.click(changeBtnColorOnClick);
 
+  // Function to check the current hour and update time block classes accordingly
   function checkHour() {
-    // Iterate over all div blocks with class 'time-block'
     $(".time-block").each(function () {
-      const currentHour = dayjs().hour(); // 24 hour format
+      const currentHour = dayjs().hour();
 
-      // Get the hour from the id attribute of the current time block
       var timeBlockHour = parseInt($(this).attr("id").split("-")[1]);
 
       if (timeBlockHour < currentHour) {
@@ -63,9 +63,12 @@ $(document).ready(function () {
     });
   }
 
+  // Function to retrieve items from local storage
   function getItems() {
     return localStorage.getItem("hourly-calander");
   }
+
+  // Function to display saved items in the corresponding time blocks
   function displaySavedItems() {
     var storedItems = getItems();
     var items = JSON.parse(storedItems) || [];
@@ -79,19 +82,13 @@ $(document).ready(function () {
     });
   }
 
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-
+  // Function to display current time
   function displayTime() {
     var rightNow = dayjs().format("MMM DD, YYYY [at] hh:mm:ss a");
     TimeDisplayEl.text(rightNow);
   }
 
+  // Update time every second
   setInterval(displayTime, 1000);
   checkHour();
   displaySavedItems();
