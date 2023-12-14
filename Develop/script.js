@@ -14,7 +14,7 @@ $(document).ready(function () {
 
     // Get the ID of the closest ancestor element with the class "time-block"
     var timeBlockId = $(this).closest(".time-block").attr("id");
-    console.log("Clicked button in time block with ID: " + timeBlockId);
+    // console.log("Clicked button in time block with ID: " + timeBlockId);
 
     // Get the value of the input field with the class "description" within the same "time-block"
     var descriptionVal = $(this)
@@ -24,13 +24,13 @@ $(document).ready(function () {
 
     // Check if the description has a length greater than 1
     if (descriptionVal.length > 1) {
-      console.log(descriptionVal + " at " + timeBlockId);
+      // console.log(descriptionVal + " at " + timeBlockId);
       // Save the description into local storage
       var timeObject = { timeBlockId, descriptionVal };
       items.push(timeObject);
       localStorage.setItem("hourly-calander", JSON.stringify(items));
     } else {
-      console.log("description is null at " + timeBlockId);
+      // console.log("description is null at " + timeBlockId);
       // Do not save into local storage if the description is null or too short
     }
   });
