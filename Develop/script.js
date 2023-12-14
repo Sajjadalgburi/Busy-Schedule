@@ -34,6 +34,10 @@ $(document).ready(function () {
       console.log("description is null at " + timeBlockId);
       // Do not save into local storage if the description is null or too short
     }
+    localStorage.setItem(
+      timeBlockEl,
+      JSON.stringify({ value: descriptionVal })
+    );
   });
 
   function changeBtnColorOnClick(event) {
