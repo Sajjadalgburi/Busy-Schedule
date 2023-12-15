@@ -2,7 +2,11 @@
 
 ## Description
 
-In this even-numbered week, I receive a startup code, meaning that the HTML and CSS were already provided and my job was to implement the funculanity though javascript.
+In this even-numbered week, I received a startup code, indicating that the HTML and CSS were already provided, and my task was to implement functionality through JavaScript. The entire purpose of this program is to allow busy individuals to plan ahead. The algorithm will change the color of each individual time block based on the time; specifically, the past will be colored red, the present will be green, and finally, the future will be indicated by the color green.
+
+Additionally, when a save button is clicked, the respective description will be saved into local storage through an array of objects. To retrieve the elements, the program will convert the local storage back into an object. It will then loop through each manipulated description, inserting them where needed by checking the initial blockId. Lastly, when the individual decides to refresh the page, the items inputted by the user will persist.
+
+During the project, I faced several challenges. Integrating the startup HTML and CSS with JavaScript functionality required careful coordination. Managing dynamic color changes for past, present, and future time blocks was tricky due to precise time calculations. Handling local storage for saving and retrieving descriptions posed a challenge, and syncing manipulations during page refreshes required thorough testing. Overcoming these challenges involved debugging, effective communication, and iterative testing for a robust final product.
 
 ## Web URL
 
