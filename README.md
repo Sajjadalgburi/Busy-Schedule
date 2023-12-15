@@ -10,7 +10,7 @@ https://sajjadalgburi.github.io/Busy-Schedule/
 
 ## Screenshot UI
 
-![Screenshot of Web](Develop/screenshot/Screenshot%202023-12-14%20162553.png)
+![Screenshot of Web](assets/screenshot/Screenshot%202023-12-14%20162553.png)
 
 ## Installation
 
